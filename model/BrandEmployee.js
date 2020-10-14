@@ -13,9 +13,6 @@ const brandemployeeSchema = new Schema(
 
         employee:{
 
-
-          
-
             employeeName:{
             type: String,
             required:true,
@@ -30,9 +27,20 @@ const brandemployeeSchema = new Schema(
                 min:6,
                 max:255
                  },
+                employeePassword:{
+                type: String,
+                    
+                min:6,
+                max:255
+                },                
+                 
             employeePhoneNumber:{
                 type : String,
                 required:true,
+                max:30
+            },
+            employeeRole:{
+                type : String,
                 max:30
             },
 
@@ -45,9 +53,7 @@ const brandemployeeSchema = new Schema(
             //  },
 
         role:{  type : String
-            }
-
-            ,
+            },
         employeePassword:{
             type : String,
             min:6,

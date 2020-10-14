@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
- 
 var Schema = mongoose.Schema;
 
 
 
- 
 const influencerSchema = new Schema(
     {
         firstName:{
@@ -12,7 +10,8 @@ const influencerSchema = new Schema(
             
             min:4,
             max:20
- 
+
+
             },
         lastName:{
                 type: String,
@@ -25,10 +24,10 @@ const influencerSchema = new Schema(
                 type: String,                
                 min:4,
                 max:25  
- 
+
             },
         country:{
-                    type: String,
+                type: String,
                     
                     min:4,
                     max:20
@@ -42,7 +41,6 @@ const influencerSchema = new Schema(
                 min:6,
                 max:100
             },
- 
         password:{
             type: String,
             
@@ -65,15 +63,14 @@ const influencerSchema = new Schema(
             default: Date.now
              
         }
- 
     });
- 
+
+
     
 
 
 
 
- 
 // Custom validation for email
 influencerSchema.path('email').validate((val) => {
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -82,13 +79,16 @@ influencerSchema.path('email').validate((val) => {
 
 
 
- 
  // Virtual for user's full name
  influencerSchema
 .virtual("fullName")
 .get(function () {
     return this.firstName + " " + this.lastName;
 });
- 
+
+
     
     module.exports= mongoose.model('Influencer',influencerSchema);
+   
+
+   
