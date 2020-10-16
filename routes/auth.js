@@ -68,7 +68,7 @@ router.delete('/:id/productdelete',CompanyProductsController.productdelete);
 //single product selected
 router.get('/:id/productget',CompanyProductsController.productget);
 //get all product selected in databse//
-router.get('/:id/allproductGet',CompanyProductsController.allproductGet);
+router.get('/allproductGet',CompanyProductsController.allproductGet);
 //get all product for specific company selected//
 router.get('/:id/allproductCompanyGet',CompanyProductsController.allproductCompanyGet);
 //update product//

@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const Joi = require('@hapi/joi');
 
 
-exports.register = async(req,res)=>
+exports.register = async(req,res,next)=>
 {
     
 
@@ -61,6 +61,7 @@ exports.register = async(req,res)=>
         // console.log(savedUser);
 
         res.send(savedUser);
+        next();
         
     } catch (error) {
         res.status(400).send(error);
@@ -69,7 +70,7 @@ exports.register = async(req,res)=>
    
 }
 
-exports.login = async(req,res) =>
+exports.login = async(req,res,next) =>
 {
     //User Validation before login
     
@@ -96,22 +97,23 @@ exports.login = async(req,res) =>
      res.header('auth-token',token).send(token);
     
      res.send('User logged in');
+     next();
     
 }    
 
-exports.delete =  async(req,res)=>{
+exports.delete =  async(req,res,next)=>{
 
     User.findOne({_id: req.params.id}, function (error, user){
         console.log("This object will get deleted " + user);
         
         user.remove();
         res.send("This user is removed "+ user.firstName);
-    
+        next()
     });
     
 }
 
-exports.edit =  function (req,res){
+exports.edit =  function (req,res,next){
     var conditions ={_id: req.params.id};
     if(req.body != {email:req.body.email} || req.body != req.body.password){
         User.updateOne(conditions, req.body)   
@@ -131,17 +133,19 @@ exports.edit =  function (req,res){
     }
 
 
-    exports.userGet=async(req,res)=>{
+    exports.userGet=async(req,res,next)=>{
         User.findOne({_id: req.params.id},function(error, user){
             console.log("This user will get selected "+ user);
 
             res.send("This user is selected"+ user);
+            next();
         });
     }
 
-    exports.allusersGet=async(req , res)=> {
+    exports.allusersGet=async(req , res,next)=> {
         User.find({}).then(function (users) {
         res.send(users);
+        next();
         });
        }
 

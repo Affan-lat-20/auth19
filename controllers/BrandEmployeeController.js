@@ -1,7 +1,7 @@
 const BrandEmployee = require('../model/BrandEmployee');
 
 
-exports.registerEmployee = async(req,res)=>{
+exports.registerEmployee = async(req,res,next)=>{
     const brandemployee = new BrandEmployee({
         Companyid: {_id:req.params.id},
             employee:{                                
@@ -18,28 +18,31 @@ exports.registerEmployee = async(req,res)=>{
             // console.log(savedUser);
     
             res.send(savedbrandemp);
+            next();
             
         } catch (error) {
             res.status(400).send(error);
         }
 
     }
-    exports.employeeDelete =  async(req,res)=>{
+    exports.employeeDelete =  async(req,res,next)=>{
 
         BrandEmployee.findOne({_id: req.params.id}, function (error, brandemployee){
             console.log("This object will get deleted " + brandemployee);
             
             brandemployee.remove();
             res.send("This user is removed "+ brandemployee);
+            next();
         
         });
     }
 
-    exports.employeeGet=async(req,res)=>{
+    exports.employeeGet=async(req,res,next)=>{
         BrandEmployee.findOne({_id: req.params.id},function(error,brandemployee){
             console.log("This user will get selected "+ brandemployee);
 
             res.send("This user is selected");
+            next();
         });
     }
 
@@ -55,7 +58,7 @@ exports.registerEmployee = async(req,res)=>{
     //     });
     // }
     
-    exports.employeeEdit =  function (req,res){
+    exports.employeeEdit =  function (req,res,next){
         var conditions ={_id: req.params.id};
             BrandEmployee.updateOne(conditions, req.body)   
             .then(doc =>{
@@ -68,11 +71,12 @@ exports.registerEmployee = async(req,res)=>{
      
     }
        
-    exports.employeeGet=async(req,res)=>{
+    exports.employeeGet=async(req,res,next)=>{
         BrandEmployee.findOne({_id: req.params.id},function(error,brandemployee){
             console.log("This user will get selected "+ brandemployee);
 
             res.send("This user is selected"+ brandemployee);
+            next();
         });
     }
 
@@ -88,7 +92,7 @@ exports.registerEmployee = async(req,res)=>{
     //     });
     // }
     
-    exports.employeeEdit =  function (req,res){
+    exports.employeeEdit =  function (req,res,next){
         var conditions ={_id: req.params.id};
             BrandEmployee.updateOne(conditions, req.body)   
             .then(doc =>{
@@ -103,17 +107,19 @@ exports.registerEmployee = async(req,res)=>{
 
 //get all employees//
 
-    exports.allemployeeGet=async(req , res)=> {
+    exports.allemployeeGet=async(req , res,next)=> {
         BrandEmployee.find({}).then(function (brandemployee) {
         res.send(brandemployee);
+        next();
         });
        }
        
 //get all employees for specific id//
 
-    exports.allemployeeCompanyGet=async(req , res)=> {
+    exports.allemployeeCompanyGet=async(req , res,next)=> {
         BrandEmployee.find({Companyid : req.params.id}).then(function (brandemployee) {
         res.send(brandemployee);
+        next();
         });
        }
 
