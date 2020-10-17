@@ -2,12 +2,9 @@ const CompanyProduct = require("../model/Companyproducts")
  
 exports.addproduct = async(req,res,next)=>{
     const companyproduct = new CompanyProduct({
-        Companyid: {_id:req.params.id},
-        prodCategory:{ 
-                category:req.body.prodCategory.category, 
-                subCategory:req.body.prodCategory.subCategory 
-                                    
-            },
+        Companyid: {_id:req.params.id},         
+            category:req.body.category, 
+            subCategory:req.body.subCategory,                           
             brand:req.body.brand,
             region:req.body.region,
             productName:req.body.productName,

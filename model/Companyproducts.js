@@ -10,11 +10,11 @@ const companyproductSchema = new Schema(
         Companyid:{  type: mongoose.Schema.Types.ObjectId,
             ref: 'User' 
                 },
-        prodCategory:{
+    
 
             category:{type:String},
-            subCategory:{type: String}
-            },
+            subCategory:{type: String},
+            
  
         brand:{
             type: String,
