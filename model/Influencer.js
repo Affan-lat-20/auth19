@@ -56,6 +56,8 @@ const influencerSchema = new Schema(
              type: Boolean,
              
             },
+
+        category:[],
         
         
         date:{
