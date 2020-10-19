@@ -16,7 +16,7 @@ const newCampaignSchema = new Schema(
         }
     },
 //Step-2
-    productDetails:{
+    prodDetails:{
         category:{
             type:String
         },
@@ -37,7 +37,82 @@ const newCampaignSchema = new Schema(
         productDescription:{type:String}
     },
 //Step-3
-    projectDetails:{},
+    projectDetails:{
+        medium:[],
+        
+        budget: {
+            currency: { type: String },
+            range: {
+                min: { 
+                    type: Number, min: 0,
+                    validate: {
+                        validator: function(val){
+                            const currMax = this.target.budget.range.max;
+                            return (currMax !== undefined ? val <= currMax : true);
+                        },
+                        message: "The MIN range with value {VALUE} must be <= than the max range!"
+                    }
+                },
+                max: { 
+                    type: Number, min: 0,
+                    validate: {
+                        validator: function(val) {
+                            const currMin = this.target.budget.range.min;
+                            return (currMin !== undefined ? val >= currMin : true);
+                        },
+                        message: "The MAX range with value {VALUE} must be >= than the min range!"
+                    }
+                }
+            }
+          },
+          
+          
+          age: {
+            
+            range: {
+                min: { 
+                    type: Number, min: 0,
+                    validate: {
+                        validator: function(val){
+                            const currMax = this.target.age.range.max;
+                            return (currMax !== undefined ? val <= currMax : true);
+                        },
+                        message: "The MIN range with value {VALUE} must be <= than the max range!"
+                    }
+                },
+                max: { 
+                    type: Number, min: 0,
+                    validate: {
+                        validator: function(val) {
+                            const currMin = this.target.age.range.min;
+                            return (currMin !== undefined ? val >= currMin : true);
+                        },
+                        message: "The MAX range with value {VALUE} must be >= than the min range!"
+                    }
+                }
+            }
+          },
+          startDate: {
+            type: Date,
+            required: true
+          },
+          endDate: {
+            type: Date,
+            required: true,
+            validate: [dateValidator, 'Start Date must be less than End Date']
+          },
+          tagline:{type:String},
+
+          objectives:[]
+
+
+    }
    });
+
+   // function that validate the startDate and endDate
+function dateValidator(value) {
+    // `this` is the mongoose document
+    return this.startDate <= value;
+  }
 
 module.exports=mongoose.model('NewCampaign',newCampaignSchema);
