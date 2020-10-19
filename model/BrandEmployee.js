@@ -13,6 +13,9 @@ const brandemployeeSchema = new Schema(
 
         employee:{
 
+
+          
+
             employeeName:{
             type: String,
             required:true,
@@ -53,7 +56,8 @@ const brandemployeeSchema = new Schema(
             //  },
 
         role:{  type : String
-            },
+            }
+,
         employeePassword:{
             type : String,
             min:6,
