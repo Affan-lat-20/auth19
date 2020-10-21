@@ -25,7 +25,6 @@ const companyproductSchema = new Schema(
        
         region:{
             type: String,
-            required:true,
             min:5,
             max:255
             
