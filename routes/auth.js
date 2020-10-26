@@ -99,7 +99,7 @@ router.get('/influencerallGet',InfluencerController.influencerallGet);
 //***************************************Ends Influencer Routes**************************************//
 
 //***************************************Youtube api Routes**************************************//
-router.get('/:id/addyoutubedata',YoutubeController.addyoutubeData);
+router.post('/:id/addyoutubedata',YoutubeController.addyoutubeData);
 router.get('/:id/getyoutubedata',YoutubeController.getuseryoutubedata);
 
 module.exports = router;
