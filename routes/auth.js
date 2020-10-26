@@ -3,12 +3,14 @@ const User = require('../model/User');
 const BrandEmployee = require('../model/BrandEmployee');
 const CompanyProduct = require("../model/Companyproducts");
 const Influencer = require("../model/Influencer");
+const YoutubeData = require("../model/YoutubeData")
 
 const { Router } = require('express');
 const AuthController = require("../controllers/AuthController");
 const BrandEmployeeController=require("../controllers/BrandEmployeeController");
 const CompanyProductsController=require("../controllers/CompanyProductController");
 const InfluencerController=require("../controllers/InfluencerController");
+const YoutubeController=require("../controllers/YoutubeController");
 
 //const registerValidation = require('../validation');
 
@@ -93,5 +95,11 @@ router.put('/influencerEdit/:id',InfluencerController.influencerEdit);
 router.get('/:id/influencerGet',InfluencerController.influencerGet);
 // //get all influencer data//
 router.get('/influencerallGet',InfluencerController.influencerallGet);
+
+//***************************************Ends Influencer Routes**************************************//
+
+//***************************************Youtube api Routes**************************************//
+router.get('/:id/addyoutubedata',YoutubeController.addyoutubeData);
+router.get('/:id/getyoutubedata',YoutubeController.getuseryoutubedata);
 
 module.exports = router;
