@@ -3,7 +3,7 @@ const User = require('../model/User');
 const BrandEmployee = require('../model/BrandEmployee');
 const CompanyProduct = require("../model/Companyproducts");
 const Influencer = require("../model/Influencer");
-const YoutubeData = require("../model/YoutubeData")
+const YoutubeData = require("../model/YoutubeData");
 
 const { Router } = require('express');
 const AuthController = require("../controllers/AuthController");

@@ -15,3 +15,5 @@ const youtubeData = new Schema({
 
 
 });
+
+module.exports= mongoose.model('YoutubeData',youtubeData);
