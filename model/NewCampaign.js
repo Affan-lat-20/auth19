@@ -22,29 +22,27 @@ const newCampaignSchema = new Schema(
     },
 //Step-2
     prodDetails:{
-        category:{
-            type:String
-        },
-        brand:{
-            type:String
-        },
-        productDetails:{
-            type:String
-        },
-        region:{
-            type:String
-        },
-        image:{
-            type:String
-        },
+        category:{type:String},
+        brand:{type:String},
+        productDetails:{type:String},
+        region:{type:String},
+        image:{type:String},
         productName:{type:String},
         productURL:{type:String},
         productDescription:{type:String}
     },
 //Step-3
     projectDetails:{
-        medium:[],
-        
+        //1
+        medium:{type:String},
+        //2
+        frequency:{type:String},
+        //3
+        recurring: {
+            type: Boolean,
+           },  
+          
+        //4
         budget: {
             currency: { type: String },
             range: {
@@ -70,8 +68,23 @@ const newCampaignSchema = new Schema(
                 }
             }
           },
+       
+         //5
+         startDate: {
+            type: Date,
+            // required: true
+          },
+          endDate: {
+            type: Date,
+            // required: true,
+            // validate: [dateValidator, 'Start Date must be less than End Date']
+          },
+          //6--Segmentation
+          //Audience
+          primaryAudience:{type:String},
+          secondaryAudience:{type:String},
           
-          
+          //7
           age: {
             
             range: {
@@ -97,19 +110,28 @@ const newCampaignSchema = new Schema(
                 }
             }
           },
-          startDate: {
-            type: Date,
-            required: true
+          
+          //8
+          gender:{
+            type:String,
+            enum:['No preference','Male','Female'],
+            default:'No preference'
           },
-          endDate: {
-            type: Date,
-            required: true,
-            validate: [dateValidator, 'Start Date must be less than End Date']
-          },
-          tagline:{type:String},
+        //9
+          tagline:{
+            type:String,
+            min:4,
+            max:100
 
-          objectives:[]
+        },
+          
+        //10
+        objective:{type:String}
+       
 
+        // status:{
+        //     type:Boolean,
+        //     enum:[true,false]}
 
     }
    });
