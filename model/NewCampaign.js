@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
+const User = require('../model/User');
 var Schema = mongoose.Schema;
 
 const newCampaignSchema = new Schema(
    { 
+    Companyid:{  type: mongoose.Schema.Types.ObjectId,
+        ref: 'User' 
+            },
+
 //Step-1
     overview:{
         projectName:{

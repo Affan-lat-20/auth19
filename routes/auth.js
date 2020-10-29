@@ -4,6 +4,7 @@ const BrandEmployee = require('../model/BrandEmployee');
 const CompanyProduct = require("../model/Companyproducts");
 const Influencer = require("../model/Influencer");
 const YoutubeData = require("../model/YoutubeData");
+const NewCampaign= require('../model/NewCampaign');
 
 const { Router } = require('express');
 const AuthController = require("../controllers/AuthController");
@@ -11,6 +12,7 @@ const BrandEmployeeController=require("../controllers/BrandEmployeeController");
 const CompanyProductsController=require("../controllers/CompanyProductController");
 const InfluencerController=require("../controllers/InfluencerController");
 const YoutubeController=require("../controllers/YoutubeController");
+const NewCampaignController=require("../controllers/NewCampaignController");
 
 //const registerValidation = require('../validation');
 
@@ -101,5 +103,7 @@ router.get('/influencerallGet',InfluencerController.influencerallGet);
 //***************************************Youtube api Routes**************************************//
 router.post('/:id/addyoutubedata',YoutubeController.addyoutubeData);
 router.get('/:id/getyoutubedata',YoutubeController.getuseryoutubedata);
+//---------------------------------------NewCampaign---------------------------------------------
+router.post('/:id/addProject',NewCampaignController.addProject);
 
 module.exports = router;
