@@ -1,3 +1,4 @@
+const { boolean } = require('@hapi/joi');
 const mongoose = require('mongoose');
 const User = require('../model/User');
 var Schema = mongoose.Schema;
@@ -45,29 +46,34 @@ const newCampaignSchema = new Schema(
         //4
         budget: {
             currency: { type: String },
-            range: {
-                min: { 
-                    type: Number
-                    // , min: 0,
-                    // validate: {
-                    //     validator: function(val){
-                    //         const currMax = this.target.budget.range.max;
-                    //         return (currMax !== undefined ? val <= currMax : true);
-                    //     },
-                    //     message: "The MIN range with value {VALUE} must be <= than the max range!"
+            minBudget:{type:String},
+            maxBudget:{type:String},
+            // range: {
+            //     min: { 
+            //         type: Number
+            //         , min: 0,
+            //         validate: {
+            //             validator: function(val){
+            //                 const currMax = this.target.budget.range.max;
+            //                 return (currMax !== undefined ? val <= currMax : true);
+            //             },
+            //             message: "The MIN range with value {VALUE} must be <= than the max range!"
+            //         }
                  
-                },
-                max: { 
-                    type: Number
-                    // , min: 0,
-                    // validate: {
-                    //     validator: function(val) {
-                    //         const currMin = this.target.budget.range.min;
-                    //         return (currMin !== undefined ? val >= currMin : true);
-                    //     },
-                    //     message: "The MAX range with value {VALUE} must be >= than the min range!"
-                    }
-                }
+            //     },
+            //     max: { 
+            //         type: Number
+            //         , min: 0,
+            //         validate: {
+            //             validator: function(val) {
+            //                 const currMin = this.target.budget.range.min;
+            //                 return (currMin !== undefined ? val >= currMin : true);
+            //             },
+            //             message: "The MAX range with value {VALUE} must be >= than the min range!"
+            //         }
+            //     }
+
+            // }
             
           },
        
@@ -87,31 +93,33 @@ const newCampaignSchema = new Schema(
           secondaryAudience:{type:String},
           
           //7
-          age: {
+          minAge:{type:String},
+          maxAge:{type:String},
+        //   age: {
             
-            range: {
-                min: { 
-                    type: Number, min: 0,
-                    // validate: {
-                    //     validator: function(val){
-                    //         const currMax = this.target.age.range.max;
-                    //         return (currMax !== undefined ? val <= currMax : true);
-                    //     },
-                    //     message: "The MIN range with value {VALUE} must be <= than the max range!"
-                    // }
-                },
-                max: { 
-                    type: Number, min: 0,
-                    // // validate: {
-                    // //     validator: function(val) {
-                    // //         const currMin = this.target.age.range.min;
-                    // //         return (currMin !== undefined ? val >= currMin : true);
-                    // //     },
-                    // //     message: "The MAX range with value {VALUE} must be >= than the min range!"
-                    // }
-                }
-            }
-          },
+        //     range: {
+        //         min: { 
+        //             type: Number, min: 0,
+        //             // validate: {
+        //             //     validator: function(val){
+        //             //         const currMax = this.target.age.range.max;
+        //             //         return (currMax !== undefined ? val <= currMax : true);
+        //             //     },
+        //             //     message: "The MIN range with value {VALUE} must be <= than the max range!"
+        //             // }
+        //         },
+        //         max: { 
+        //             type: Number, min: 0,
+        //             // // validate: {
+        //             // //     validator: function(val) {
+        //             // //         const currMin = this.target.age.range.min;
+        //             // //         return (currMin !== undefined ? val >= currMin : true);
+        //             // //     },
+        //             // //     message: "The MAX range with value {VALUE} must be >= than the min range!"
+        //             // }
+        //         }
+        //     }
+        //   },
           
           //8
           gender:{
@@ -126,9 +134,23 @@ const newCampaignSchema = new Schema(
             max:100
 
         },
+
+        socialHandles:{
+
+            facebook:{type:Boolean,default:false},
+            instagram:{type:Boolean,default:false},
+            linkedin:{type:Boolean,default:false},
+            tiktok:{type:Boolean,deafult:false},
+            twitter:{type:Boolean,default:false},
+            youtube:{type:Boolean,default:false}
+
+        },
           
         //10
-        objective:[]
+        objective:[],
+        isPublished:{type:Boolean},
+
+    
        
 
         // status:{

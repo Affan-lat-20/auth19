@@ -28,24 +28,40 @@ exports.addProject = async(req,res,next)=>{
                 recurring:req.body.projectDetails.recurring,
                 budget:{
                     currency:req.body.projectDetails.budget.currency,
-                    range:{
-                        min:req.body.projectDetails.budget.range.min,
-                        max:req.body.projectDetails.budget.range.max,
-                    }
+                    maxBudget:req.body.projectDetails.budget.maxBudget,
+                    minBudget:req.body.projectDetails.budget.minBudget
+                    
+                    // range:{
+                    //     min:req.body.projectDetails.budget.range.min,
+                    //     max:req.body.projectDetails.budget.range.max,
+                    // }
 
                 },
                 startDate:req.body.projectDetails.startDate,
                 endDate:req.body.projectDetails.endDate,
                 primaryAudience:req.body.projectDetails.primaryAudience,
                 secondaryAudience:req.body.projectDetails.secondaryAudience,
-                age:{
-                    range:{
-                        min:req.body.projectDetails.age.range.min,
-                        max:req.body.projectDetails.age.range.max
-                    }
-                },
+                maxAge:req.body.projectDetails.maxAge,
+                minAge:req.body.projectDetails.minAge,
+                // age:{
+                //     range:{
+                //         min:req.body.projectDetails.age.range.min,
+                //         max:req.body.projectDetails.age.range.max
+                //     }
+                // },
                 gender:req.body.projectDetails.gender,
                 tagline:req.body.projectDetails.tagline,
+                youtube:req.body.projectDetails.youtube,
+                socialHandles:{
+
+                facebook:req.body.projectDetails.socialHandles.facebook,
+                linkedin:req.body.projectDetails.socialHandles.linkedin,
+                tiktok:req.body.projectDetails.socialHandles.tiktok,
+                instagram:req.body.projectDetails.socialHandles.instagram,
+
+
+                },
+                
                 objective:req.body.projectDetails.objective
         
             }    
