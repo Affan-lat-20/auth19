@@ -13,7 +13,7 @@ exports.addProject = async(req,res,next)=>{
             prodDetails:{
                 category:req.body.prodDetails.category,
                 brand:req.body.prodDetails.brand,
-                productDetails:req.body.prodDetails.productDetails,
+                subCategory:req.body.prodDetails.subCategory,
                 region:req.body.prodDetails.region,
                 image:req.body.prodDetails.image,
                 productName:req.body.prodDetails.productName,

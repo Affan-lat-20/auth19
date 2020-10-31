@@ -25,7 +25,7 @@ const newCampaignSchema = new Schema(
     prodDetails:{
         category:{type:String},
         brand:{type:String},
-        productDetails:{type:String},
+        subCategory:{type:String},
         region:{type:String},
         image:{type:String},
         productName:{type:String},
