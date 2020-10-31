@@ -103,7 +103,23 @@ router.get('/influencerallGet',InfluencerController.influencerallGet);
 //***************************************Youtube api Routes**************************************//
 router.post('/:id/addyoutubedata',YoutubeController.addyoutubeData);
 router.get('/:id/getyoutubedata',YoutubeController.getuseryoutubedata);
-//---------------------------------------NewCampaign---------------------------------------------
+//***********************************New Campagine *********************************************//
+
+//post the new campaign 
 router.post('/:id/addProject',NewCampaignController.addProject);
+
+router.delete('/deleteCampaign/:id',NewCampaignController.deleteCampaign);
+
+//get all campaign for specific company selected//
+router.get('/allCampaignGet/:id',NewCampaignController.allCampaignGet);
+
+//get single campaign //
+router.get('/:id/singleCampaignGet',NewCampaignController.singleCampaignGet);
+
+//get all campaign irrespective of any id //
+router.get('/allCampaignGet',NewCampaignController.allCampaignGet);
+
+//update the campaign 
+router.put('/updateCampaign/:id',NewCampaignController.updateCampaign);
 
 module.exports = router;
