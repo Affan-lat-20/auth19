@@ -63,8 +63,10 @@ exports.addProject = async(req,res,next)=>{
                 },
                 
                 objective:req.body.projectDetails.objective
+                
         
-            }    
+            },  
+            status:req.body.status
         });
         try {
             const savednewCampaign = await newCampaign.save();

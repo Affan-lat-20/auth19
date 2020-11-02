@@ -148,8 +148,7 @@ const newCampaignSchema = new Schema(
           
         //10
         objective:[],
-        isPublished:{type:Boolean},
-
+      
     
        
 
@@ -157,7 +156,12 @@ const newCampaignSchema = new Schema(
         //     type:Boolean,
         //     enum:[true,false]}
 
+    },
+    status:{
+      type:String,
+      enum:['published','draft','completed','cancelled']
     }
+
    });
 
    // function that validate the startDate and endDate
