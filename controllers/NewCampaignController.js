@@ -126,3 +126,13 @@ exports.addProject = async(req,res,next)=>{
             
      
     }
+
+
+    exports.getcampquery = async(req,res,next)=>{
+        // NewCampaign.findOne(req.query)
+        const result = await NewCampaign.find(req.query);
+        res
+        .status(200)
+        .json({success:true,count:result.length});
+        // .json({success:true,count:result.length, data:result});
+    }

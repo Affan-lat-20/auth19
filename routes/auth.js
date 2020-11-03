@@ -60,6 +60,8 @@ router.put('/:id/employeeEdit',BrandEmployeeController.employeeEdit)
 router.get('/employeelist',BrandEmployeeController.allemployeeGet);
 //get all brandemployee for specific company//
 router.get('/:id/employeelist',BrandEmployeeController.allemployeeCompanyGet);
+//query selector for brand employee//
+router.get('/gett',BrandEmployeeController.getquery);
 
 //**********************************End of brand employees****************************/
 
@@ -121,5 +123,7 @@ router.get('/allCampaignGet',NewCampaignController.allCampaignGet);
 
 //update the campaign 
 router.put('/updateCampaign/:id',NewCampaignController.updateCampaign);
+//to get count of specific campgaine status//
+router.get('/getcamp',NewCampaignController.getcampquery);
 
 module.exports = router;

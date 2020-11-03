@@ -46,6 +46,14 @@ exports.registerEmployee = async(req,res,next)=>{
         });
     }
 
+    exports.getquery = async(req,res,next)=>{
+        // BrandEmployee.findOne(req.query)
+        const result = await BrandEmployee.find(req.query);
+        res
+        .status(200)
+        .json({success:true,count:result.length, data:result});
+    }
+ 
     
 
     // exports.employeeEdit=async(req,res)=>{
