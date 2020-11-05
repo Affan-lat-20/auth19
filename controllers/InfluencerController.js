@@ -115,4 +115,20 @@ exports.influencerEdit =  function (req,res){
         });
        }
 
+
+       exports.getspecific = async(req,res,next)=>{
+        // BrandEmployee.findOne(req.query)
+        let query;
+        let result = JSON.stringify(req.query);
+        result = result.replace(/\b(gt|gte|lt|lte|in)\b/g,match => `$${match}`);
+        console.log(result);
+
+        query = Influencer.find(JSON.parse(result));
+        
+        const inf = await query
+        res
+        .status(200)
+        .json({success:true,count:inf.length, data:inf});
+    }
+
     

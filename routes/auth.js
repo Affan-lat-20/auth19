@@ -100,6 +100,8 @@ router.get('/:id/influencerGet',InfluencerController.influencerGet);
 // //get all influencer data//
 router.get('/influencerallGet',InfluencerController.influencerallGet);
 
+router.get('/getspecific',InfluencerController.getspecific);
+
 //***************************************Ends Influencer Routes**************************************//
 
 //***************************************Youtube api Routes**************************************//
@@ -124,6 +126,9 @@ router.get('/allCampaignGet',NewCampaignController.allCampaignGet);
 //update the campaign 
 router.put('/updateCampaign/:id',NewCampaignController.updateCampaign);
 //to get count of specific campgaine status//
+
+//to get all
 router.get('/getcamp',NewCampaignController.getcampquery);
+
 
 module.exports = router;

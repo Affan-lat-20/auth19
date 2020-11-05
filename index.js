@@ -34,4 +34,5 @@ app.use((req,res,next) => {
 app.use('/api/user',authRoute);
 
 
-app.listen(5000,() => console.log("Server Up and Running"));
+// app.listen(5000,() => console.log("Server Up and Running"));
+app.listen(process.env.PORT|| 5000, () => console.log(`Server started at port : ${process.env.PORT}`));

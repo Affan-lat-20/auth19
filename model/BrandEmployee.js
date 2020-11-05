@@ -58,11 +58,11 @@ const brandemployeeSchema = new Schema(
         role:{  type : String
             }
 ,
-        employeePassword:{
-            type : String,
-            min:6,
-            max:25
-        }
+        // employeePassword:{
+        //     type : String,
+        //     min:6,
+        //     max:25
+        // }
     }
  });
 

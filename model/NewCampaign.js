@@ -159,7 +159,7 @@ const newCampaignSchema = new Schema(
     },
     status:{
       type:String,
-      enum:['published','draft','completed','cancelled']
+      enum:['published','draft','completed','cancelled','active']
     }
 
    });
