@@ -62,7 +62,7 @@ exports.influencerLogin = async(req,res) =>
      //Password Validation
      const validPass = await bcrypt.compare(req.body.password, influencer.password);
      if(!validPass) return res.status(400).send('Invalid password');
-    
+    res.send(influencer);
      //Create and assign jwt tokken
      const token = jwt.sign({_id: influencer._id}, process.env.TOKEN_SECRET);
      res.header('auth-token',token).send(token);

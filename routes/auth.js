@@ -100,7 +100,7 @@ router.get('/:id/influencerGet',InfluencerController.influencerGet);
 // //get all influencer data//
 router.get('/influencerallGet',InfluencerController.influencerallGet);
 
-router.get('/getspecific',InfluencerController.getspecific);
+router.get('/getspecificinf',InfluencerController.getspecific);
 
 //***************************************Ends Influencer Routes**************************************//
 
