@@ -91,7 +91,7 @@ exports.login = async(req,res,next) =>
      //Password Validation
      const validPass = await bcrypt.compare(req.body.password, user.password);
      if(!validPass) return res.status(400).send('Invalid password');
-    
+    res.send(user);
      //Create and assign jwt tokken
      const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
      res.header('auth-token',token).send(token);
