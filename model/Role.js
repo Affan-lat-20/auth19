@@ -5,12 +5,10 @@ var Schema = mongoose.Schema;
 
 const roleSchema = new Schema({
     roleid :mongoose.Schema.Types.ObjectId,
-    roleNames:{
-        type: String,
-        required:true,
-        min:5,
-        max:255
-                                
-        }
+    roleType:{
+        type:String,
+        enum:["Admin","CampaignManager"]
+       
+    }
 });
 module.exports= mongoose.model('Role',roleSchema);

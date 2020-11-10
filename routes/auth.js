@@ -129,6 +129,8 @@ router.put('/updateCampaign/:id',NewCampaignController.updateCampaign);
 
 //to get all
 router.get('/getcamp',NewCampaignController.getcampquery);
+//to get list with details
+router.get('/getcamplist',NewCampaignController.getcamplist);
 
 
 module.exports = router;
