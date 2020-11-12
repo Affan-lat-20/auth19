@@ -38,7 +38,6 @@ const companyproductSchema = new Schema(
  
         productURL:{
             type: String,
-            required:true,
             min:4,
             max:255   
  
