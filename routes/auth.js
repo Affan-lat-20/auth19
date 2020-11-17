@@ -132,5 +132,7 @@ router.get('/getcamp',NewCampaignController.getcampquery);
 //to get list with details
 router.get('/getcamplist',NewCampaignController.getcamplist);
 
+router.get('/getcam',NewCampaignController.getcamplsspecific);
+
 
 module.exports = router;

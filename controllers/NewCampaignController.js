@@ -145,3 +145,44 @@ exports.addProject = async(req,res,next)=>{
         .json({success:true,count:result.length,data:result});
         // .json({success:true,count:result.length, data:result});
     }
+
+
+    //get all using select query
+
+    exports.getcamplsspecific = async(req,res)=>{
+        let query;
+        const reqQuery= {...req.query};
+
+        //Fields to exclude
+        const removeFields=['select'];
+        //loop over removeFields and delete them from reqQuery
+        removeFields.forEach(param => delete reqQuery[param]);
+
+        //Create query string
+        let queryStr = JSON.stringify(reqQuery);
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g,match => `$${match}`);
+        
+        
+        //find resourse
+        query = NewCampaign.find(JSON.parse(queryStr));
+       
+        //select fields
+        if(req.query.select){
+            const fields = req.query.select.split(',').join(' ');
+            query= query.select(fields);
+        }
+
+        //sort
+        if(req.query.sort){
+            const sortBy= req.query.sort.split(',').join(' ');
+            query=query.sort('-createdAt')
+        }
+
+        //query execution
+        const inf = await query
+        res
+        .status(200)
+        .json({success:true,count:inf.length, data:inf});
+
+         
+        }
