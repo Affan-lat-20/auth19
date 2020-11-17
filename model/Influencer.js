@@ -37,7 +37,7 @@ const influencerSchema = new Schema(
         
         email:{
                 type: String,
-                
+                unique: true,
                 min:6,
                 max:100
             },
