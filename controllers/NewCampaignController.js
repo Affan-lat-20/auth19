@@ -99,9 +99,9 @@ exports.addProject = async(req,res,next)=>{
        //get campaign by singleid 
        exports.singleCampaignGet=async(req,res)=>{
         NewCampaign.findOne({_id: req.params.id},function(error,newCampaign){
-            console.log("This campaign will get selected "+ newCampaign);
+            // console.log("This campaign will get selected "+ newCampaign);
  
-            res.send("This Campaign is selected"+ newCampaign);
+            res.send(newCampaign);
         });
     }
     
