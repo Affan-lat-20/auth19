@@ -61,9 +61,9 @@ exports.addProject = async(req,res,next)=>{
 
 
                 },
-                
+                influencerCategories:req.body.projectDetails.influencerCategories,
                 objective:req.body.projectDetails.objective,
-                influencerCategories:req.body.projectDetails.influencerCategories
+                
                 
         
             },  

@@ -148,6 +148,8 @@ const newCampaignSchema = new Schema(
           
         //10
         objective:[],
+        //11
+        influencerCategories:[],
       
     
        
