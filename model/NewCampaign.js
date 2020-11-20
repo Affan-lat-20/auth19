@@ -137,12 +137,12 @@ const newCampaignSchema = new Schema(
 
         socialHandles:{
 
-            facebook:{type:Boolean,default:false},
-            instagram:{type:Boolean,default:false},
-            linkedin:{type:Boolean,default:false},
-            tiktok:{type:Boolean,deafult:false},
-            twitter:{type:Boolean,default:false},
-            youtube:{type:Boolean,default:false}
+            facebook:{type:Boolean},
+            instagram:{type:Boolean},
+            linkedin:{type:Boolean},
+            tiktok:{type:Boolean},
+            twitter:{type:Boolean},
+            youtube:{type:Boolean}
 
         },
           

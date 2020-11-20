@@ -128,7 +128,8 @@ exports.influencerEdit =  function (req,res){
         const inf = await query
         res
         .status(200)
-        .json({success:true,count:inf.length, data:inf});
+        .json({inf});
+        
     }
 
     
