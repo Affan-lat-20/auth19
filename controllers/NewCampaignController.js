@@ -51,13 +51,15 @@ exports.addProject = async(req,res,next)=>{
                 // },
                 gender:req.body.projectDetails.gender,
                 tagline:req.body.projectDetails.tagline,
-                youtube:req.body.projectDetails.youtube,
+               
                 socialHandles:{
 
                 facebook:req.body.projectDetails.socialHandles.facebook,
                 linkedin:req.body.projectDetails.socialHandles.linkedin,
                 tiktok:req.body.projectDetails.socialHandles.tiktok,
                 instagram:req.body.projectDetails.socialHandles.instagram,
+                youtube:req.body.projectDetails.socialHandles.youtube,
+                twitter:req.body.projectDetails.socialHandles.twitter,
 
 
                 },

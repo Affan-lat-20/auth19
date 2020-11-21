@@ -125,7 +125,7 @@ const newCampaignSchema = new Schema(
           gender:{
             type:String,
             enum:['No preference','Male','Female'],
-            default:'No preference'
+            // default:'No preference'
           },
         //9
           tagline:{
