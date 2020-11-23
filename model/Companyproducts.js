@@ -42,6 +42,7 @@ const companyproductSchema = new Schema(
             max:255   
  
             },
+        images:[],
         productDescription:{
                 type: String,
                 required:true,
