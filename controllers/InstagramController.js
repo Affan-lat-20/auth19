@@ -42,39 +42,54 @@
 //   }
 
 
-// const request = require('request-promise');
-// const cheerio = require('cheerio');
+const request = require('request-promise');
+const cheerio = require('cheerio');
 // const fs = require('fs');
 // const json2csv = require("json2csv").Parser;
-const getMetaData = require('metadata-scraper');
-
-
 
 
 exports.instagramfollower = async(req,res,next)=>{
 
-  let Dataarray = []
+
   var conditions =req.params.username;
+  var movie = `https://www.instagram.com/${conditions}/?hl=en`;
  
-if (conditions!=null) {
 
-  const url = `https://www.instagram.com/${conditions}/`
-  var data = await getMetaData(url)
-  // Dataarray.push({data})
-  // dataArray = data
-  // console.log(data)
-  //   const j2cp = new json2csv()
-  // const csv = j2cp.parse(dataArray)
-  //  fs.writeFileSync('./instadata.csv', csv, "utf-8")
-  // console.log(Dataarray)
+    let imdbData = []
+    const response =await request({
+        uri:movie,
+        headers:{
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-US,en;q=0.9"
+        },
+        gzip:true,
+    });
+ 
+    let $  = cheerio.load(response)
+    let dataInString = $('script[type="application/ld+json"]').html();
+    // let title = $('div[class="title_wrapper"]>h1').text().trim();
+    // let rating = $('div[class="ratingValue"] > strong  >span').text();
+    // let summary = $('div[class="summary_text"]').text().trim();
+    // let releaseDate =  $('a[title="See more release dates"]').text().trim();
+    const object = JSON.parse(dataInString);
+    
+    // imdbData.push({
+    //     title, rating, summary, releaseDate
+    // });
+ 
+    // const j2cp = new json2csv()
+    // const csv = j2cp.parse(imdbData)
+    // console.log(conditions)
+    // console.log(movie)
 
-  
+    // console.log(dataInString)
+    console.log(object)
+
+    res.send(object);
+    // fs.writeFileSync('./imdb.csv', csv, "utf-8")
+ 
 }
-  res.send(data)
 
-  
-} 
-  
-
-
+ 
 
