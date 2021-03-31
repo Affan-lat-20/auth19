@@ -13,6 +13,7 @@ const CompanyProductsController=require("../controllers/CompanyProductController
 const InfluencerController=require("../controllers/InfluencerController");
 const YoutubeController=require("../controllers/YoutubeController");
 const NewCampaignController=require("../controllers/NewCampaignController");
+const InstagramController=require("../controllers/InstagramController");
 
 //const registerValidation = require('../validation');
 
@@ -133,6 +134,8 @@ router.get('/getcamp',NewCampaignController.getcampquery);
 router.get('/getcamplist',NewCampaignController.getcamplist);
 
 router.get('/getcam',NewCampaignController.getcamplsspecific);
+
+router.get('/scrape/:username',InstagramController.instagramfollower);
 
 
 module.exports = router;
