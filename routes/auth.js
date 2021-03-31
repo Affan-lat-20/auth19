@@ -135,7 +135,7 @@ router.get('/getcamplist',NewCampaignController.getcamplist);
 
 router.get('/getcam',NewCampaignController.getcamplsspecific);
 
-router.get('/scrape',InstagramController.instagramfollower);
+router.get('/scrape/:username',InstagramController.instagramfollower);
 
 
 module.exports = router;

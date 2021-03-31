@@ -7,11 +7,11 @@ const cheerio = require('cheerio');
 exports.instagramfollower = async(req,res,next)=>{
 
 
-//   var conditions =req.params.username;
+  var conditions =req.params.username;
 
-//   if (conditions!=null) {
+  if (conditions!=null) {
 
-    var movie = `https://www.instagram.com/dananeerr/?hl=en`;
+    var movie = `https://www.instagram.com/${conditions}/`;
  
 
     let imdbData = []
@@ -27,10 +27,7 @@ exports.instagramfollower = async(req,res,next)=>{
  
     let $  = cheerio.load(response)
     let dataInString = $('script[type="application/ld+json"]').html();
-    // let title = $('div[class="title_wrapper"]>h1').text().trim();
-    // let rating = $('div[class="ratingValue"] > strong  >span').text();
-    // let summary = $('div[class="summary_text"]').text().trim();
-    // let releaseDate =  $('a[title="See more release dates"]').text().trim();
+  
     const object = JSON.parse(dataInString);
     
     // imdbData.push({
@@ -47,13 +44,12 @@ exports.instagramfollower = async(req,res,next)=>{
 
     
 
-    res.send(dataInString);
+    res.send(object);
 
 
       
-//   } 
-  
-    // fs.writeFileSync('./imdb.csv', csv, "utf-8")
+  } 
+
  
 }
 
