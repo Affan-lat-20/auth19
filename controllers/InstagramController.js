@@ -7,11 +7,11 @@ const cheerio = require('cheerio');
 exports.instagramfollower = async(req,res,next)=>{
 
 
-  var conditions =req.params.username;
+//   var conditions =req.params.username;
 
-  if (conditions!=null) {
+//   if (conditions!=null) {
 
-    var movie = `https://www.instagram.com/${conditions}/?hl=en`;
+    var movie = `https://www.instagram.com/dananeerr/?hl=en`;
  
 
     let imdbData = []
@@ -51,7 +51,7 @@ exports.instagramfollower = async(req,res,next)=>{
 
 
       
-  } 
+//   } 
   
     // fs.writeFileSync('./imdb.csv', csv, "utf-8")
  
