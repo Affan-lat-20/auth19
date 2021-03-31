@@ -1,47 +1,3 @@
-// const axios= require('axios');
-// const cheerio= require('cheerio');
- 
-// exports.getHTML=(url)=>{
-//     const { data: html } = axios.get(url);
-//     return html;
-// }
-//   exports.getInstagramFollowers=(html)=> {
-//     // load up Cheerio
-
-//     const $ = cheerio.load('https://www.instagram.com/aieseckarachi');
-//     const dataInString = $('script[type="application/ld+json"]').html();
-//     console.log(dataInString)
-//     const pageObject = JSON.parse(dataInString);
-//     return (
-//       // pageObject.mainEntityofPage.interactionStatistic.userInteractionCount
-//       pageObject
-//     );
-//   }
- 
-//   exports.getInstagramCount=()=> {
-//     const html = this.getHTML('https://www.instagram.com/aieseckarachi');
-//     const instagramCount =this.getInstagramFollowers(html);
-//     console.log(instagramCount)
-
-//     return instagramCount;
-//   }
- 
-//   exports.intagramfollower = async(req,res,next)=>{
-//     console.log(`Scraping!!`);
-//     // const icount =Promise.all([
-//     // //   getInstagramCount(),
-//     //   this.getInstagramCount()
-//     // //   getTwitterCount()
-//     // ]);
-//     const icount = this.getInstagramCount()
-//     // 
-//     // res.json({ iCount, tCount });
-//     console.log(icount);
-//     res.json(icount);
-
-//   }
-
-
 const request = require('request-promise');
 const cheerio = require('cheerio');
 // const fs = require('fs');
@@ -52,7 +8,10 @@ exports.instagramfollower = async(req,res,next)=>{
 
 
   var conditions =req.params.username;
-  var movie = `https://www.instagram.com/${conditions}/?hl=en`;
+
+  if (conditions!=null) {
+
+    var movie = `https://www.instagram.com/${conditions}/?hl=en`;
  
 
     let imdbData = []
@@ -84,9 +43,16 @@ exports.instagramfollower = async(req,res,next)=>{
     // console.log(movie)
 
     // console.log(dataInString)
-    console.log(object)
+    // console.log(conditions)
 
-    res.send(object);
+    
+
+    res.send(dataInString);
+
+
+      
+  } 
+  
     // fs.writeFileSync('./imdb.csv', csv, "utf-8")
  
 }
