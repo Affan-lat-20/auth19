@@ -2,6 +2,7 @@ const request = require('request-promise');
 const cheerio = require('cheerio');
 const axios = require('axios');
 const { response } = require('express');
+const req = require('request');
 
 // const fs = require('fs');
 // const json2csv = require("json2csv").Parser;
@@ -28,7 +29,7 @@ async function getInstagramCount() {
   return instagramCount;
 }
 
-exports.instagramfollower = async(req,res,next)=>{
+exports.instagramfollowers = async(req,res,next)=>{
 
 	// var conditions =req.params.username;
 	// console.log(`Scraping!!`);
