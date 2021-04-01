@@ -23,7 +23,7 @@ async function getInstagramFollowers(html) {
 }
 
 async function getInstagramCount() {
-  const html = await getHTML('https://instagram.com/wesbos');
+  const html = await getHTML('https://instagram.com/dananeerr');
   const instagramCount = await getInstagramFollowers(html);
   return instagramCount;
 }
@@ -31,12 +31,11 @@ async function getInstagramCount() {
 exports.instagramfollower = async(req,res,next)=>{
 
 	// var conditions =req.params.username;
-	console.log(`Scraping!!`);
+	// console.log(`Scraping!!`);
   const [iCount] = await Promise.all([
-    getInstagramCount()
-    // getTwitterCount()
+    getInstagramCount()    
   ]);
-  // res.json({ iCount, tCount });
+  
   res.json({ iCount });
 }
 
