@@ -1,57 +1,69 @@
 const request = require('request-promise');
 const cheerio = require('cheerio');
+const { response } = require('express');
+
 // const fs = require('fs');
 // const json2csv = require("json2csv").Parser;
 
 
-exports.instagramfollower = async(req,res,next)=>{
+async function getData(conditions) {
+	return new Promise(async (resolve, reject)=> {
+		var movie = `https://www.instagram.com/${conditions}/?hl=en`;
+		
+		const response = await request({
+			uri:movie,
+			headers:{
+				"accept": "*/*",
+				"accept-encoding": "gzip, deflate, br",
+				"accept-language": "en-US,en;q=0.9"
+			},
+			gzip:true,
+		});
 
+		let $ = await cheerio.load(response)
+		let dataInString = $('script[type="application/ld+json"]').html();
+		
+		const object = await JSON.parse(dataInString);
+		console.log('~~~object~~~: ',object);
 
-  var conditions =req.params.username;
-
-  if (conditions!=null) {
-
-    var movie = `https://www.instagram.com/${conditions}/`;
- 
-
-    let imdbData = []
-    const response =await request({
-        uri:movie,
-        headers:{
-            "accept": "*/*",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "en-US,en;q=0.9"
-        },
-        gzip:true,
-    });
- 
-    let $  = cheerio.load(response)
-    let dataInString = $('script[type="application/ld+json"]').html();
-  
-    const object = JSON.parse(dataInString);
-    
-    // imdbData.push({
-    //     title, rating, summary, releaseDate
-    // });
- 
-    // const j2cp = new json2csv()
-    // const csv = j2cp.parse(imdbData)
-    // console.log(conditions)
-    // console.log(movie)
-
-    // console.log(dataInString)
-    // console.log(conditions)
-
-    
-
-    res.send(object);
-
-
-      
-  } 
-
- 
+		if(object == null || object == undefined){
+			return reject(false)
+		}
+		else {
+			console.log('else: ', object);
+			return resolve(object);
+		}
+	})
 }
 
- 
+function getDatahelper(conditions) {
+	return new Promise((resolve)=> {
+		getData(conditions).then(
+			response=> {
+				resolve(response)
+			},
+			err=> {
+				console.log('err:', err);
+				getDatahelper(conditions)
+			}
+		)
+	})
+}
+
+exports.instagramfollower = async(req,res,next)=>{
+
+	var conditions =req.params.username;
+	// getDatahelper(conditions).then(
+	// 	(data)=> {
+	// 		console.log('data:', data);
+	// 		res.send(data);
+	// 	},
+	// 	(error)=> {
+	// 		console.log(error)
+	// 		res.send({error: 'Main module error'})
+	// 	}
+	// );
+	const getData = await getDatahelper(conditions);
+	res.send(getData);
+}
 
