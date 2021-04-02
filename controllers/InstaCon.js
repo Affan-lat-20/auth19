@@ -20,7 +20,7 @@ async function getData(conditions) {
 			},
 			gzip:true,
 		});
-		//console.log('~~~response~~~: ', response);
+		console.log('~~~response~~~: ', response);
 		let $ = await cheerio.load(response);
 		// const $ = cheerio.load(movie);
 		var object = $('.count-infos');
