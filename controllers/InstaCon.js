@@ -10,7 +10,7 @@ const requestPromise = require('request-promise');
 async function getData(conditions) {
 	return new Promise(async (resolve, reject)=> {
 		var movie = `https://www.instagram.com/${conditions}/?hl=en`;
-		
+		console.log('URL',movie);
 		const response = await request({
 			uri:movie,
 			headers:{
@@ -20,11 +20,11 @@ async function getData(conditions) {
 			},
 			gzip:true,
 		});
-		console.log('~~~response~~~: ', response);
+		//console.log('~~~response~~~: ', response);
 		let $ = await cheerio.load(response);
-		console.log('~~~ $~~~: ', $);
+		//console.log('~~~ $~~~: ', $);
 		let dataInString = $('script[type="application/ld+json"]').html();
-		console.log('~~~dataInString~~~: ',dataInString);
+		//console.log('~~~dataInString~~~: ',dataInString);
 
 		const object = await JSON.parse(dataInString);
 		console.log('~~~object~~~: ',object);
