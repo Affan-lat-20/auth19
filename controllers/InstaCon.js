@@ -20,10 +20,11 @@ async function getData(conditions) {
 			},
 			gzip:true,
 		});
-		console.log('~~~response~~~: ', response);
+		//console.log('~~~response~~~: ', response);
 		let $ = await cheerio.load(response);
 		// const $ = cheerio.load(movie);
-		var object = $('.count-infos');
+		var object = await $('.count-infos');
+		console.log('~~~object count~~~: ', object);
  		 var object=object.text();
 		//console.log('~~~ $~~~: ', $);
 		// let dataInString = $('script[type="application/ld+json"]').html();
@@ -44,8 +45,8 @@ async function getData(conditions) {
 var temp = 0;
 function getDatahelper(conditions, res) {
 	
-	return new Promise((resolve)=> {
-		getData(conditions).then(
+	return new Promise(async (resolve)=> {
+		await getData(conditions).then(
 			response=> {
 				resolve(response)
 			},
@@ -59,7 +60,7 @@ function getDatahelper(conditions, res) {
 				}
 				++temp;
 
-				getDatahelper(conditions)
+				//getDatahelper(conditions)
 			}
 		)
 	})
