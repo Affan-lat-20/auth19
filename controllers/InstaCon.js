@@ -12,7 +12,7 @@ async function getData(conditions) {
 		var movie = `https://www.tiktok.com/${conditions}`;
 		console.log('URL',movie);
 		const response = await request({
-			uri:movie
+			url:movie
 			// headers:{
 			// 	"accept": "*/*",
 			// 	"accept-encoding": "gzip, deflate, br",
