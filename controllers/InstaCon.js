@@ -12,13 +12,13 @@ async function getData(conditions) {
 		var movie = `https://www.tiktok.com/${conditions}`;
 		console.log('URL',movie);
 		const response = await request({
-			uri:movie,
-			headers:{
-				"accept": "*/*",
-				"accept-encoding": "gzip, deflate, br",
-				"accept-language": "en-US,en;q=0.9"
-			},
-			gzip:true,
+			uri:movie
+			// headers:{
+			// 	"accept": "*/*",
+			// 	"accept-encoding": "gzip, deflate, br",
+			// 	"accept-language": "en-US,en;q=0.9"
+			// },
+			//gzip:true,
 		});
 		//console.log('~~~response~~~: ', response);
 		let $ = await cheerio.load(response);
