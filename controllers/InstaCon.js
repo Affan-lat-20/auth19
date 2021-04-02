@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 const { response } = require('express');
 const req = require('request');
+const requestPromise = require('request-promise');
 
 
 
@@ -35,19 +36,29 @@ async function getData(conditions) {
 		}
 	})
 }
-
-function getDatahelper(conditions) {
+var temp = 0;
+function getDatahelper(conditions, res) {
+	
 	return new Promise((resolve)=> {
 		getData(conditions).then(
 			response=> {
 				resolve(response)
 			},
 			err=> {
-				console.log('err:', err);
+				console.log(`Strike ${temp}`);
+				if ( temp == 3 )
+				{
+					temp = 0;
+					// res.send({"err":500, "error": "General Processing Error"})
+					return;
+				}
+				++temp;
+
 				getDatahelper(conditions)
 			}
 		)
 	})
+	
 }
 
 exports.instagramfollower = async(req,res,next)=>{
@@ -63,6 +74,6 @@ exports.instagramfollower = async(req,res,next)=>{
 	// 		res.send({error: 'Main module error'})
 	// 	}
 	// );
-	const getData = await getDatahelper(conditions);
+	const getData = await getDatahelper(conditions, res);
 	res.send(getData);
 }
