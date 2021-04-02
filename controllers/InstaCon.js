@@ -9,7 +9,7 @@ const requestPromise = require('request-promise');
 
 async function getData(conditions) {
 	return new Promise(async (resolve, reject)=> {
-		var movie = `https://www.instagram.com/${conditions}/?hl=en`;
+		var movie = `https://www.tiktok.com/${conditions}`;
 		console.log('URL',movie);
 		const response = await request({
 			uri:movie,
@@ -22,11 +22,14 @@ async function getData(conditions) {
 		});
 		//console.log('~~~response~~~: ', response);
 		let $ = await cheerio.load(response);
+		// const $ = cheerio.load(movie);
+		var object = $('.count-infos');
+ 		 var object=object.text();
 		//console.log('~~~ $~~~: ', $);
-		let dataInString = $('script[type="application/ld+json"]').html();
+		// let dataInString = $('script[type="application/ld+json"]').html();
 		//console.log('~~~dataInString~~~: ',dataInString);
 
-		const object = await JSON.parse(dataInString);
+		// const object = await JSON.parse(dataInString);
 		console.log('~~~object~~~: ',object);
 
 		if(object == null || object == undefined){

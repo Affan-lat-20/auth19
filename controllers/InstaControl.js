@@ -49,7 +49,7 @@ async function getData(conditions ) {
 	}
 }
 
-exports.instagramfollower = async(req,res,next)=>{
+exports.instagramfollow = async(req,res,next)=>{
 
 	var conditions =req.params.username;
 
