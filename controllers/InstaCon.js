@@ -20,10 +20,12 @@ async function getData(conditions) {
 			},
 			gzip:true,
 		});
-
-		let $ = await cheerio.load(response)
+		console.log('~~~response~~~: ', response);
+		let $ = await cheerio.load(response);
+		console.log('~~~ $~~~: ', $);
 		let dataInString = $('script[type="application/ld+json"]').html();
-		
+		console.log('~~~dataInString~~~: ',dataInString);
+
 		const object = await JSON.parse(dataInString);
 		console.log('~~~object~~~: ',object);
 
