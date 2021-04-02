@@ -9,7 +9,7 @@ const requestPromise = require('request-promise');
 
 async function getData(conditions) {
 	return new Promise(async (resolve, reject)=> {
-		var movie = `https://www.tiktok.com/${conditions}`;
+		var movie = `https://www.tiktok.com/${conditions}?`;
 		console.log('URL',movie);
 		const response = await request({
 			url:movie
