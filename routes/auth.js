@@ -14,7 +14,7 @@ const InfluencerController=require("../controllers/InfluencerController");
 const YoutubeController=require("../controllers/YoutubeController");
 const NewCampaignController=require("../controllers/NewCampaignController");
 const InstagramController=require("../controllers/InstagramController");
-const InstaCon=require("../controllers/InstaCon")
+const TicktokController=require("../controllers/ticktokController")
 
 //const registerValidation = require('../validation');
 
@@ -138,6 +138,6 @@ router.get('/getcam',NewCampaignController.getcamplsspecific);
 
 router.get('/scrapes',InstagramController.instagramfollowers);
 
-router.get('/scrape/:username',InstaCon.instagramfollower)
+router.get('/tiktok/:username',TicktokController.tiktokfollower)
 
 module.exports = router;

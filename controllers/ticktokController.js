@@ -67,7 +67,7 @@ function getDatahelper(conditions, res) {
 	
 }
 
-exports.instagramfollower = async(req,res,next)=>{
+exports.tiktokfollower = async(req,res,next)=>{
 
 	var conditions =req.params.username;
 	// getDatahelper(conditions).then(
