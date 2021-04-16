@@ -24,7 +24,7 @@ async function getData(conditions) {
 		let $ = await cheerio.load(response);
 		// const $ = cheerio.load(movie);
 		var object = await $('.count-infos');
-		console.log('~~~object count~~~: ', object);
+		// console.log('~~~object count~~~: ', object);
  		 var object=object.text();
 		//console.log('~~~ $~~~: ', $);
 		// let dataInString = $('script[type="application/ld+json"]').html();
