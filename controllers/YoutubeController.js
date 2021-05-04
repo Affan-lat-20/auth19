@@ -53,6 +53,6 @@ exports.getyouspec = async(req,res,next)=>{
     const you = await query
     res
     .status(200)
-    .json({you});
+    .json(you);
     
 }
