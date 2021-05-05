@@ -11,11 +11,7 @@ const youtubeData = new Schema({
     publishedAt:{type:String},
     subscriberCount:{type:String},
     videoCount:{type:String},
-    viewCount:{type:String},
-    date:{
-        type: Date,
-        default: Date.now
-         }
+    viewCount:{type:String}
 
 
 });

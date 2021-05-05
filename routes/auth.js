@@ -109,9 +109,6 @@ router.get('/getspecificinf',InfluencerController.getspecific);
 //***************************************Youtube api Routes**************************************//
 router.post('/:id/addyoutubedata',YoutubeController.addyoutubeData);
 router.get('/:id/getyoutubedata',YoutubeController.getuseryoutubedata);
-router.get('/youtubeget',YoutubeController.getallyoutubedata);
-router.get('/getspecific',YoutubeController.getyouspec);
-router.put('/:id/edityoutube',YoutubeController.youtubeedit);
 //***********************************New Campagine *********************************************//
 
 //post the new campaign 
