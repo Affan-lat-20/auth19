@@ -31,10 +31,28 @@ exports.findrole = async(req,res,next)=>{
 
     query = RolebaseAuth.find(JSON.parse(result));
     
-    const inf = await query
+    const role = await query
     res
     .status(200)
-    .json({inf});
+    .json(role);
     
 }
 
+
+exports.roleedit =  function (req,res){
+    var conditions ={_id: req.params.id};
+   
+    RolebaseAuth.updateOne(conditions, req.body)   
+        .then(doc =>{
+            if(!doc){
+                return res.status(404).end();}
+                return res.status(200).json(doc);
+            })
+            .catch(err => next(err));
+        
+    
+        res
+
+    
+   
+    }

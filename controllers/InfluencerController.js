@@ -1,4 +1,4 @@
-const Influencer = require('../model/Influencer');
+const User = require('../model/Users');
 
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
@@ -19,9 +19,10 @@ exports.influencerRegister = async(req,res)=>
     
    //Create new Influencer
 
-   const influencer = new Influencer({
+   const user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    userRole:req.body.userRole,
     contactNo:req.body.contactNo,
     country: req.body.country,
     email: req.body.email,  
