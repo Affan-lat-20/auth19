@@ -1,18 +1,21 @@
 const router = require('express').Router();
-const { authUser, authRole } = require('./basicAuth')
 const User = require('../model/User');
-const Influencer = require("../model/Users");
+const BrandEmployee = require('../model/BrandEmployee');
+const CompanyProduct = require("../model/Companyproducts");
+const Influencer = require("../model/Influencer");
 const YoutubeData = require("../model/YoutubeData");
-const RolebaseAuth= require('../model/RolebaseAuth');
+const NewCampaign= require('../model/NewCampaign');
+
 const { Router } = require('express');
 const AuthController = require("../controllers/AuthController");
-
+const BrandEmployeeController=require("../controllers/BrandEmployeeController");
+const CompanyProductsController=require("../controllers/CompanyProductController");
 const InfluencerController=require("../controllers/InfluencerController");
 const YoutubeController=require("../controllers/YoutubeController");
+const NewCampaignController=require("../controllers/NewCampaignController");
 const InstagramController=require("../controllers/InstagramController");
 const TicktokController=require("../controllers/ticktokController")
 const InstaControl=require("../controllers/InstaControl");
-const RolebaseController=require("../controllers/RolebaseauthController")
 //const registerValidation = require('../validation');
 
 //***********************************Company routes start**********************/    
@@ -20,7 +23,7 @@ const RolebaseController=require("../controllers/RolebaseauthController")
 router.post('/register',AuthController.register);
 
 //login
-router.post('/login',authUser,AuthController.login);
+router.post('/login',AuthController.login);
 
 //delete user from db//
 router.delete('/delete/:id',AuthController.delete);
@@ -33,11 +36,54 @@ router.put('/edit/:id',AuthController.edit);
 //get one userinfo//
 router.get('/userGet/:id',AuthController.userGet);
 //get all users data//
-router.get('/userlist',authUser,AuthController.allusersGet);
-router.get('/getspecif',AuthController.finduser);
+router.get('/userlist',AuthController.allusersGet);
 
 //**************************************Company user ends here**************************************//
 
+
+//***************************************Brand Employee Routes**************************************//
+
+// create brandemployee//
+router.post('/:id/brandemployee',BrandEmployeeController.registerEmployee);
+
+//delete brandemployee
+router.delete('/:id/employeeDelete',BrandEmployeeController.employeeDelete);
+
+
+//get single brandemployee
+
+router.get('/:id/employeeGet',BrandEmployeeController.employeeGet);
+
+router.get('/:id/employeeGet',BrandEmployeeController.employeeGet);
+//edit brandemployee
+
+router.put('/:id/employeeEdit',BrandEmployeeController.employeeEdit)
+//get all brandemployee that are in db//
+router.get('/employeelist',BrandEmployeeController.allemployeeGet);
+//get all brandemployee for specific company//
+router.get('/:id/employeelist',BrandEmployeeController.allemployeeCompanyGet);
+//query selector for brand employee//
+router.get('/gett',BrandEmployeeController.getquery);
+
+//**********************************End of brand employees****************************/
+
+
+//*********************************CompanyProductRoutes*******************************/
+//add company products//
+router.post('/:id/addproduct',CompanyProductsController.addproduct);
+//delete product
+router.delete('/:id/productdelete',CompanyProductsController.productdelete);
+//single product selected
+router.get('/:id/productget',CompanyProductsController.productget);
+//get all product selected in databse//
+router.get('/allproductGet',CompanyProductsController.allproductGet);
+//get all product for specific company selected//
+router.get('/:id/allproductCompanyGet',CompanyProductsController.allproductCompanyGet);
+//update product//
+router.put('/:id/updateproduct',CompanyProductsController.updateproduct);
+
+
+//------------------------------------------------------------------
 //Influencer
 //influencer login 
 router.post('/influencerLogin',InfluencerController.influencerLogin);
@@ -68,17 +114,35 @@ router.get('/getspecific',YoutubeController.getyouspec);
 router.put('/:id/edityoutube',YoutubeController.youtubeedit);
 //***********************************New Campagine *********************************************//
 
+//post the new campaign 
+router.post('/:id/addProject',NewCampaignController.addProject);
+
+router.delete('/deleteCampaign/:id',NewCampaignController.deleteCampaign);
+
+//get all campaign for specific company selected//
+router.get('/allCampaignGet/:id',NewCampaignController.allCampaignGet);
+
+//get single campaign //
+router.get('/:id/singleCampaignGet',NewCampaignController.singleCampaignGet);
+
+//get all campaign irrespective of any id //
+router.get('/allCampaignGet',NewCampaignController.allCampaignGet);
+
+//update the campaign 
+router.put('/updateCampaign/:id',NewCampaignController.updateCampaign);
+//to get count of specific campgaine status//
+
+//to get all
+router.get('/getcamp',NewCampaignController.getcampquery);
+//to get list with details
+router.get('/getcamplist',NewCampaignController.getcamplist);
+
+router.get('/getcam',NewCampaignController.getcamplsspecific);
 
 router.get('/scrapes',InstagramController.instagramfollowers);
 
 router.get('/insta/:username',InstaControl.instagramfollow);
 
 router.get('/tiktok/:username',TicktokController.tiktokfollower);
-
-//++++++++++++++++++++++++++++++++++++++++++++++Role Controller paths+++++++++++++++++++++++//
-
-router.post('/rolebase',RolebaseController.Rolebaseadd);
-router.get('/rolebase',RolebaseController.findrole);
-router.put('rolebase/:id',RolebaseController.roleedit);
 
 module.exports = router;

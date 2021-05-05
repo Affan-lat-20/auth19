@@ -14,6 +14,14 @@ exports.register = async(req,res,next)=>
     // const schema = Joi.object({ 
     //     firstName: Joi.string().min(4).max(20).required(),
     //     lastName: Joi.string().min(4).max(20).required(),
+    //     contactNo: Joi.string().min(4).max(50).required(),
+    //     signature: Joi.string().min(4).max(50).required(),
+    //     econcent: Joi.boolean(),
+    //     corporateHierarchy: Joi.string().min(4).max(50).required(),
+    //     address: Joi.string().min(4).max(100).required(),
+    //     country: Joi.string().min(4).required(),        
+    //     companyName: Joi.string().min(4).required(),
+    //     websiteUrl: Joi.string().min(4).required(),
     //     email: Joi.string().min(8).required(),
     //     password: Joi.string().min(8).required()
     // });
@@ -37,7 +45,14 @@ exports.register = async(req,res,next)=>
    const user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    userRole:req.body.userRole,
+    signature:req.body.signature,
+    econcent:req.body.econcent,
+    corporateHierarchy:req.body.corporateHierarchy,
+    address:req.body.address,
+    contactNo:req.body.contactNo,
+    country: req.body.country,
+    companyName: req.body.companyName,
+    websiteUrl: req.body.websiteUrl,
     email: req.body.email,    
     password:hashedPassword
 });
@@ -81,7 +96,7 @@ exports.login = async(req,res,next) =>
      const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
      res.header('auth-token',token).send(token);
     
-    //  res.send('User logged in');
+     res.send('User logged in');
      next();
     
 }    
@@ -133,24 +148,5 @@ exports.edit =  function (req,res,next){
         next();
         });
        }
-
-       exports.finduser = async(req,res,next)=>{
-        // BrandEmployee.findOne(req.query)
-        let query;
-        let result = JSON.stringify(req.query);
-        result = result.replace(/\b(gt|gte|lt|lte|in)\b/g,match => `$${match}`);
-        console.log(result);
-    
-        query = User.find(JSON.parse(result));
-        
-        const user = await query
-        res
-        .status(200)
-        .json(user);
-                
-    }
-
-
-    
 
     

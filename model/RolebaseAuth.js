@@ -19,7 +19,7 @@ const Roles = new Schema(
                 },
         operation:{
                 type: String, 
-                enum:["POST","GET","PUT","DELETE","ALL"],             
+                enum:["C","R","U","D","A"],             
              
 
             },
