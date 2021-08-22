@@ -38,6 +38,8 @@ router.get('/userGet/:id',AuthController.userGet);
 //get all users data//
 router.get('/userlist',AuthController.allusersGet);
 
+router.post('/mail',AuthController.mailer);
+router.post('/gmail',AuthController.gmailer);
 //**************************************Company user ends here**************************************//
 
 
@@ -144,5 +146,8 @@ router.get('/scrapes',InstagramController.instagramfollowers);
 router.get('/insta/:username',InstaControl.instagramfollow);
 
 router.get('/tiktok/:username',TicktokController.tiktokfollower);
+
+
+
 
 module.exports = router;
