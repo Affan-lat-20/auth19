@@ -153,6 +153,9 @@ exports.edit =  function (req,res,next){
        }
 
        exports.mailer=async(req , res,next)=> {
+            req.body.toemail.toString()
+      
+           
 
         let transporter = nodemailer.createTransport({
             // host: "smtp.ethereal.affan.dev55@gmail.com",
@@ -172,7 +175,8 @@ exports.edit =  function (req,res,next){
           // send mail with defined transport object
           let info = await transporter.sendMail({
             from: '"Testing email server" <affan.dev55@gmail.com>', // sender address
-            to: req.body.toemail, // list of receivers
+            to: req.body.toemail.toString(), // list of receivers
+            cc: req.body.cc.toString(),//list of cc
             subject: req.body.subject, // Subject line
             text: "Hello world?", // plain text body
             html: req.body.details, // html body
@@ -216,6 +220,14 @@ exports.edit =  function (req,res,next){
 
         }
     
+        exports.test=async(req , res,next)=> {
+            let array=req.body.email
+            // var myVar1 = array.join(); 
+            // var myVar2='"'+myVar1+'"'
+            // console.log('"'+myVar1+'"');
+
+            console.log(array.toString())
+        }
       
        
 
