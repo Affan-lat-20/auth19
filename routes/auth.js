@@ -40,7 +40,7 @@ router.get('/userlist',AuthController.allusersGet);
 
 router.post('/mail',AuthController.mailer);
 router.post('/gmail',AuthController.gmailer);
-router.post('/test',AuthController.test);
+// router.post('/test',AuthController.test);
 //**************************************Company user ends here**************************************//
 
 

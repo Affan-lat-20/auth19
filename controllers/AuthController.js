@@ -152,10 +152,14 @@ exports.edit =  function (req,res,next){
         });
        }
 
-       exports.mailer=async(req , res,next)=> {
-            req.body.toemail.toString()
-      
-           
+       exports.gmailer=async(req , res,next)=> {  
+        // let c= null;
+        // if(req.body.cc!=null){
+
+        //     let c=req.body.cc.toString()
+        // }
+       
+                 
 
         let transporter = nodemailer.createTransport({
             // host: "smtp.ethereal.affan.dev55@gmail.com",
@@ -163,8 +167,8 @@ exports.edit =  function (req,res,next){
             // port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-              user: 'affan.dev55@gmail.com', // generated ethereal user
-              pass: 'Password@12345@', // generated ethereal password
+              user: 'youremail@gmail.com', // generated ethereal user
+              pass: 'yourpass', // generated ethereal password
             },
 
             tls:{
@@ -174,12 +178,13 @@ exports.edit =  function (req,res,next){
         
           // send mail with defined transport object
           let info = await transporter.sendMail({
-            from: '"Testing email server" <affan.dev55@gmail.com>', // sender address
+            from: req.body.from||'"Testing email server" <a@pod.com>', // sender address
             to: req.body.toemail.toString(), // list of receivers
-            cc: req.body.cc.toString(),//list of cc
+            cc:req.body.cc,//list of cc
             subject: req.body.subject, // Subject line
             text: "Hello world?", // plain text body
             html: req.body.details, // html body
+            
           });
         
           console.log("Message sent: %s", info.messageId);
@@ -192,41 +197,56 @@ exports.edit =  function (req,res,next){
         }
 
         
-        exports.gmailer=async(req , res,next)=> {
-                // Step 1
-        let transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL || 'affan.dev55@gmail.com', // TODO: your gmail account
-                pass: process.env.PASSWORD || 'Password@12345@' // TODO: your gmail password
+        exports.mailer=async(req , res,next)=> {
+          
+            try{
+            let transporter = nodemailer.createTransport({
+                        
+                //  protocol:'smtp', // 'mail', 'sendmail', or 'smtp'
+                host :'mail.lathransoft.com',
+                port : 587,
+                secure: false,
+                auth: {
+                    user: 'support@lathransoft.com', // generated ethereal user
+                    pass: '!@#Developer123', // generated ethereal password
+              },
+  
+                 tls:{
+                     rejectUnauthorized:false
+                },            
+                // mtp_crypto :'ssl',
+                // mailtype :'html',
+                // smtp_timeout :'60', //in seconds
+                // charset :'utf-8',
+                // wordwrap : TRUE,      
+                 });
+            
+              // send mail with defined transport object
+              let info = await transporter.sendMail({
+                from: '"Testing email server" <support@lathransoft.com>', // sender address
+                to: req.body.toemail.toString(), // list of receivers
+                // cc: req.body.cc.toString(),//list of cc
+                subject: req.body.subject, // Subject line
+                text: "Hello world? Text body", // plain text body
+                html: req.body.details, // html body
+                
+              });
+            
+              console.log("Message sent: %s", info.messageId);
+              // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+            
+              // Preview only available when sending through an Ethereal account
+              console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+              // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+              res.send('success')
+
             }
-        });
 
-        // Step 2
-        let mailOptions = {
-            from: 'affan.dev55@gmail.com', // TODO: email sender
-            to: 'affanhasan55@gmail.com', // TODO: email receiver
-            subject: 'Nodemailer - Test',
-            text: 'Wooohooo it works!!'
-        };
-
-        // Step 3
-        transporter.sendMail(mailOptions, (err, data) => {
-            if (err) {
-                console.log('Error occurs');
+            catch(error) {
+                console.error(error);
+                res.send('Message sending failed')
             }
-            console.log('Email sent!!!');
-       })
 
-        }
-    
-        exports.test=async(req , res,next)=> {
-            let array=req.body.email
-            // var myVar1 = array.join(); 
-            // var myVar2='"'+myVar1+'"'
-            // console.log('"'+myVar1+'"');
-
-            console.log(array.toString())
         }
       
        
