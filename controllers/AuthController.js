@@ -225,7 +225,7 @@ exports.edit =  function (req,res,next){
               let info = await transporter.sendMail({
                 from: '"Testing email server" <support@lathransoft.com>', // sender address
                 to: req.body.toemail.toString(), // list of receivers
-                // cc: req.body.cc.toString(),//list of cc
+                cc: req.body.cc.toString(),//list of cc
                 subject: req.body.subject, // Subject line
                 text: "Hello world? Text body", // plain text body
                 html: req.body.details, // html body
