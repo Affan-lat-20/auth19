@@ -228,7 +228,7 @@ exports.edit =  function (req,res,next){
                     to:Joi.required(),
                     cc:Joi.optional(),
                     subject:Joi.required(),
-                    text:Joi.required()
+                    details:Joi.required()
                 });
                 
                 const {error} = schema.validate(req.body);
@@ -262,7 +262,7 @@ exports.edit =  function (req,res,next){
                 to: req.body.to.toString(), // list of receivers
                 cc:req.body.cc == undefined ? '' : req.body.cc.toString(),//list of cc
                 subject: req.body.subject, // Subject line
-                text: req.body.text, // plain text body
+                text: req.body.details, // plain text body
                 // html: req.body.details, // html body
                 
               });
