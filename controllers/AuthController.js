@@ -158,6 +158,22 @@ exports.edit =  function (req,res,next){
 
         //     let c=req.body.cc.toString()
         // }
+        //validations//
+
+        //Validate USER DATA Before SUBMIT
+   
+        const schema = Joi.object({ 
+            from: Joi.required(),
+            to:Joi.required().toString(),
+            cc:Joi.optional().toString(),
+            subject:Joi.required(),
+            text:Joi.required()
+        });
+        
+        const {error} = schema.validate(req.body);
+        
+        if (error) return res.status(400).send(error.details[0].message);
+        /////
        
                  
 
@@ -180,10 +196,10 @@ exports.edit =  function (req,res,next){
           let info = await transporter.sendMail({
             from: req.body.from||'"Testing email server" <a@pod.com>', // sender address
             to: req.body.toemail.toString(), // list of receivers
-            cc:req.body.cc,//list of cc
+            cc:req.body.cc == undefined ? '' : req.body.cc.toString(),//list of cc
             subject: req.body.subject, // Subject line
-            text: "Hello world?", // plain text body
-            html: req.body.details, // html body
+            text: req.body.details||"Hello world?", // plain text body
+            // html: req.body.details, // html body
             
           });
         
@@ -198,8 +214,27 @@ exports.edit =  function (req,res,next){
 
         
         exports.mailer=async(req , res,next)=> {
+
+
+                
+   
+        
+       
           
             try{
+                 //Validate USER DATA Before SUBMIT
+                const schema = Joi.object({ 
+                    // from: Joi.required(),
+                    to:Joi.required(),
+                    cc:Joi.optional(),
+                    subject:Joi.required(),
+                    text:Joi.required()
+                });
+                
+                const {error} = schema.validate(req.body);
+                
+                if (error) return res.status(400).send(error.details[0].message);
+                /////
             let transporter = nodemailer.createTransport({
                         
                 //  protocol:'smtp', // 'mail', 'sendmail', or 'smtp'
@@ -220,15 +255,15 @@ exports.edit =  function (req,res,next){
                 // charset :'utf-8',
                 // wordwrap : TRUE,      
                  });
-            
+         
               // send mail with defined transport object
               let info = await transporter.sendMail({
                 from: '"Testing email server" <support@lathransoft.com>', // sender address
-                to: req.body.toemail.toString(), // list of receivers
-                cc: req.body.cc.toString(),//list of cc
+                to: req.body.to.toString(), // list of receivers
+                cc:req.body.cc == undefined ? '' : req.body.cc.toString(),//list of cc
                 subject: req.body.subject, // Subject line
-                text: "Hello world? Text body", // plain text body
-                html: req.body.details, // html body
+                text: req.body.text, // plain text body
+                // html: req.body.details, // html body
                 
               });
             
